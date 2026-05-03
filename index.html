@@ -5,14 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lacuna — opening soon</title>
   <meta name="description" content="a quiet place, for three days. opening soon.">
-  <meta property="og:title" content="Lacuna — a quiet place online, for three days">
-  <meta property="og:description" content="An anonymous online space for the words you cannot say aloud. Write, light a candle, let go. Posts fade in three days."><link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta property="og:title" content="Lacuna">
+  <meta property="og:description" content="a quiet place, for three days.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     html { scroll-behavior: smooth; }
+
     body {
       background:
         radial-gradient(ellipse at 85% 95%, rgba(232, 168, 124, 0.14) 0%, transparent 55%),
@@ -25,6 +27,7 @@
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
+
     body::before {
       content: '';
       position: fixed;
@@ -40,67 +43,688 @@
       pointer-events: none;
       z-index: 0;
     }
-    .container { max-width: 640px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
-    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 4rem 0; }
-    .logo { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: 4rem; letter-spacing: 0.01em; color: #f2e8d4; margin-bottom: 2.5rem; }
-    .tagline { font-family: 'Caveat', cursive; font-size: 1.8rem; color: #d4c2a0; font-weight: 400; line-height: 1.4; margin-bottom: 3rem; }
-    .coming-soon { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: #8a8098; line-height: 1.7; margin-bottom: 3rem; max-width: 340px; }
-    .waitlist-form { display: flex; flex-direction: column; gap: 1rem; width: 100%; max-width: 380px; align-items: stretch; }
-    .email-input { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; font-weight: 300; color: #f0e5d1; background: transparent; border: none; border-bottom: 1px solid rgba(138, 128, 152, 0.4); padding: 0.85rem 0; outline: none; text-align: center; letter-spacing: 0.02em; transition: border-color 0.3s ease; }
-    .email-input::placeholder { color: #6b6478; font-style: italic; }
-    .email-input:focus { border-bottom-color: #e8a87c; }
-    .submit-btn { font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; color: #8a8098; background: transparent; border: 1px solid rgba(138, 128, 152, 0.3); padding: 0.9rem 1.5rem; cursor: pointer; transition: all 0.4s ease; }
-    .submit-btn:hover { color: #e8a87c; border-color: #e8a87c; background: rgba(232, 168, 124, 0.04); }
-    .fine-print { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.9rem; color: #6b6478; margin-top: 1.5rem; }
-    .confirmation { display: flex; flex-direction: column; gap: 0.5rem; align-items: center; text-align: center; animation: gentleFadeIn 1s ease; padding: 1rem 0; }
-    @keyframes gentleFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-    .confirm-candle { width: 9px; height: 9px; border-radius: 50%; background: radial-gradient(circle, #ffcfa0 0%, #e8a87c 55%, transparent 100%); box-shadow: 0 0 15px rgba(232, 168, 124, 0.7); animation: flicker 3s ease-in-out infinite; margin-bottom: 0.75rem; }
-    @keyframes flicker { 0%, 100% { opacity: 0.8; transform: scale(1); } 50% { opacity: 1; transform: scale(1.15); } }
-    .confirm-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.4rem; color: #f0e5d1; font-weight: 300; }
-    .confirm-email { font-family: 'Caveat', cursive; font-size: 1.15rem; color: #d4c2a0; margin-top: 0.3rem; }
-    .confirm-meta { font-family: 'Cormorant Garamond', serif; font-style: italic; color: #8a8098; font-size: 0.95rem; margin-top: 1rem; }
-    .explainer { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4rem; padding: 5rem 0; }
-    .step { text-align: center; max-width: 340px; }
-    .step-label { font-family: 'Inter', sans-serif; font-size: 0.68rem; font-weight: 300; letter-spacing: 0.35em; color: #6b6478; margin-bottom: 1rem; }
-    .step-text { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: 1.55rem; line-height: 1.5; color: #e5d6b8; }
-    .sample-section { padding: 4rem 0; }
-    .sample-heading { font-family: 'Inter', sans-serif; font-size: 0.68rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; color: #6b6478; text-align: center; margin-bottom: 3rem; }
-    .entry { border: 1px solid rgba(138, 128, 152, 0.18); padding: 2.5rem 2.5rem 1.75rem; background: rgba(255, 255, 255, 0.012); border-radius: 2px; }
-    .entry-theme { font-family: 'Inter', sans-serif; font-size: 0.65rem; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: #8a8098; margin-bottom: 1.75rem; }
-    .entry-body { font-family: 'Caveat', cursive; font-size: 1.5rem; line-height: 1.55; color: #f0e5d1; font-weight: 400; }
-    .entry-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 2.25rem; padding-top: 1.25rem; border-top: 1px solid rgba(138, 128, 152, 0.12); }
-    .candles { display: flex; gap: 0.55rem; align-items: center; }
-    .candle { width: 7px; height: 7px; border-radius: 50%; background: radial-gradient(circle, #ffcfa0 0%, #e8a87c 50%, transparent 100%); box-shadow: 0 0 10px rgba(232, 168, 124, 0.6); animation: flicker 3.2s ease-in-out infinite; }
+
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* — HERO — */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 0;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 4rem;
+      letter-spacing: 0.01em;
+      color: #f2e8d4;
+      margin-bottom: 2.5rem;
+    }
+
+    .tagline {
+      font-family: 'Caveat', cursive;
+      font-size: 1.8rem;
+      color: #d4c2a0;
+      font-weight: 400;
+      line-height: 1.4;
+      margin-bottom: 3rem;
+    }
+
+    .coming-soon {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: #8a8098;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+      max-width: 340px;
+    }
+
+    /* — FORM — */
+    .waitlist-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+      max-width: 380px;
+      align-items: stretch;
+    }
+
+    .email-input {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: #f0e5d1;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(138, 128, 152, 0.4);
+      padding: 0.85rem 0;
+      outline: none;
+      text-align: center;
+      letter-spacing: 0.02em;
+      transition: border-color 0.3s ease;
+    }
+    .email-input::placeholder {
+      color: #6b6478;
+      font-style: italic;
+    }
+    .email-input:focus {
+      border-bottom-color: #e8a87c;
+    }
+
+    .submit-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #8a8098;
+      background: transparent;
+      border: 1px solid rgba(138, 128, 152, 0.3);
+      padding: 0.9rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      letter-spacing: 0.35em;
+    }
+    .submit-btn:hover {
+      color: #e8a87c;
+      border-color: #e8a87c;
+      background: rgba(232, 168, 124, 0.04);
+    }
+
+    .fine-print {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #6b6478;
+      margin-top: 1.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* — Confirmation state — */
+    .confirmation {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: center;
+      text-align: center;
+      animation: gentleFadeIn 1s ease;
+      padding: 1rem 0;
+    }
+
+    @keyframes gentleFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .confirm-candle {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffcfa0 0%, #e8a87c 55%, transparent 100%);
+      box-shadow: 0 0 15px rgba(232, 168, 124, 0.7);
+      animation: flicker 3s ease-in-out infinite;
+      margin-bottom: 0.75rem;
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 0.8; transform: scale(1); }
+      50%      { opacity: 1;   transform: scale(1.15); }
+    }
+
+    .confirm-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: #f0e5d1;
+      font-weight: 300;
+    }
+
+    .confirm-email {
+      font-family: 'Caveat', cursive;
+      font-size: 1.15rem;
+      color: #d4c2a0;
+      margin-top: 0.3rem;
+    }
+
+    .confirm-meta {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: #8a8098;
+      font-size: 0.95rem;
+      margin-top: 1rem;
+    }
+
+    /* — EXPLAINER — */
+    .explainer {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 4rem;
+      padding: 5rem 0;
+    }
+
+    .step {
+      text-align: center;
+      max-width: 340px;
+    }
+
+    .step-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      color: #6b6478;
+      margin-bottom: 1rem;
+    }
+
+    .step-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 1.55rem;
+      line-height: 1.5;
+      color: #e5d6b8;
+    }
+
+    /* — SAMPLE ENTRY — */
+    .sample-section {
+      padding: 4rem 0;
+    }
+
+    .sample-heading {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #6b6478;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .entry {
+      border: 1px solid rgba(138, 128, 152, 0.18);
+      padding: 2.5rem 2.5rem 1.75rem;
+      background: rgba(255, 255, 255, 0.012);
+      border-radius: 2px;
+    }
+
+    .entry-theme {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #8a8098;
+      margin-bottom: 1.75rem;
+    }
+
+    .entry-body {
+      font-family: 'Caveat', cursive;
+      font-size: 1.5rem;
+      line-height: 1.55;
+      color: #f0e5d1;
+      font-weight: 400;
+    }
+
+    .entry-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(138, 128, 152, 0.12);
+    }
+
+    .candles {
+      display: flex;
+      gap: 0.55rem;
+      align-items: center;
+    }
+
+    .candle {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffcfa0 0%, #e8a87c 50%, transparent 100%);
+      box-shadow: 0 0 10px rgba(232, 168, 124, 0.6);
+      animation: flicker 3.2s ease-in-out infinite;
+    }
     .candle:nth-child(2) { animation-delay: 0.4s; }
     .candle:nth-child(3) { animation-delay: 0.9s; }
     .candle:nth-child(4) { animation-delay: 1.6s; }
-    .candle-count { font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 300; color: #8a8098; margin-left: 0.6rem; }
-    .timer { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: 0.88rem; color: #8a8098; }
-    .themes-section { padding: 3rem 0 4rem; }
-    .themes-list { display: flex; flex-direction: column; gap: 0.25rem; max-width: 440px; margin: 2.5rem auto 0; }
-    .theme-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.1rem 0; border-bottom: 1px solid rgba(138, 128, 152, 0.08); }
+
+    .candle-count {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: #8a8098;
+      margin-left: 0.6rem;
+    }
+
+    .timer {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 0.88rem;
+      color: #8a8098;
+    }
+
+    /* — WHISPERS (clickable cards) — */
+    .whispers-section { padding: 5rem 0 4rem; }
+
+    .whispers-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+
+    .whisper-card {
+      border: 1px solid rgba(138, 128, 152, 0.15);
+      padding: 1.75rem 2rem 1.25rem;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.008);
+      transition: all 0.5s ease;
+      cursor: default;
+    }
+    .whisper-card:hover {
+      border-color: rgba(232, 168, 124, 0.25);
+      background: rgba(232, 168, 124, 0.025);
+    }
+
+    .whisper-theme {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 1.1rem;
+    }
+    .whisper-theme.love { color: #e8a87c; }
+    .whisper-theme.work { color: #8ba0b8; }
+    .whisper-theme.family { color: #a5b089; }
+
+    .whisper-body {
+      font-family: 'Caveat', cursive;
+      font-size: 1.3rem;
+      line-height: 1.55;
+      color: #f0e5d1;
+      margin-bottom: 1.5rem;
+    }
+
+    .whisper-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(138, 128, 152, 0.1);
+    }
+
+    .light-candle-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0.3rem 0;
+      transition: transform 0.3s ease;
+    }
+    .light-candle-btn:hover { transform: scale(1.08); }
+    .light-candle-btn:active { transform: scale(0.95); }
+
+    .candle-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffcfa0 0%, #e8a87c 50%, transparent 100%);
+      box-shadow: 0 0 10px rgba(232, 168, 124, 0.6);
+      animation: flicker 3.2s ease-in-out infinite;
+    }
+
+    .candle-add {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 1px dashed rgba(232, 168, 124, 0.5);
+      background: transparent;
+      box-shadow: none;
+      animation: none;
+      opacity: 0.7;
+      transition: all 0.4s ease;
+    }
+    .light-candle-btn:hover .candle-add {
+      opacity: 1;
+      border-color: #e8a87c;
+      box-shadow: 0 0 6px rgba(232, 168, 124, 0.4);
+    }
+    .candle-add.lit {
+      border: none;
+      background: radial-gradient(circle, #ffcfa0 0%, #e8a87c 50%, transparent 100%);
+      box-shadow: 0 0 14px rgba(232, 168, 124, 0.8);
+      animation: flicker 3.2s ease-in-out infinite, candleBirth 0.8s ease;
+      opacity: 1;
+    }
+
+    @keyframes candleBirth {
+      0% { transform: scale(0.3); opacity: 0; }
+      60% { transform: scale(1.4); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .whisper-count {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 300;
+      color: #8a8098;
+      letter-spacing: 0.05em;
+    }
+
+    .whisper-timer {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: #8a8098;
+    }
+
+    .whispers-note {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: #6b6478;
+      text-align: center;
+      margin-top: 2.5rem;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    /* — TRY BURNING — */
+    .burning-section {
+      padding: 5rem 0 4rem;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    .burning-prompt {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: #8a8098;
+      text-align: center;
+      margin: 2rem 0 1.5rem;
+      line-height: 1.7;
+    }
+
+    .burning-pad {
+      border: 1px solid rgba(138, 128, 152, 0.18);
+      padding: 1.75rem 1.75rem 1.25rem;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.012);
+      transition: all 0.5s ease;
+    }
+    .burning-pad:focus-within {
+      border-color: rgba(232, 168, 124, 0.3);
+    }
+
+    .burning-input {
+      width: 100%;
+      min-height: 100px;
+      background: transparent;
+      border: none;
+      outline: none;
+      resize: none;
+      font-family: 'Caveat', cursive;
+      font-size: 1.4rem;
+      line-height: 1.55;
+      color: #f0e5d1;
+    }
+    .burning-input::placeholder {
+      color: #5a5468;
+      font-style: italic;
+    }
+    .burning-input.burning {
+      animation: burnAway 2s forwards;
+    }
+
+    @keyframes burnAway {
+      0% { opacity: 1; transform: translateY(0); filter: blur(0); }
+      50% { opacity: 0.5; transform: translateY(-12px); filter: blur(2px); letter-spacing: 0.05em; }
+      100% { opacity: 0; transform: translateY(-30px); filter: blur(8px); letter-spacing: 0.2em; }
+    }
+
+    .burning-actions {
+      display: flex;
+      justify-content: flex-end;
+      padding-top: 1rem;
+      margin-top: 0.5rem;
+      border-top: 1px solid rgba(138, 128, 152, 0.1);
+    }
+
+    .burn-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #c4896a;
+      border: 1px solid rgba(196, 137, 106, 0.3);
+      padding: 0.65rem 1.5rem;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+    .burn-btn:hover {
+      color: #e8a87c;
+      border-color: #e8a87c;
+      background: rgba(232, 168, 124, 0.05);
+    }
+    .burn-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .burning-quote {
+      text-align: center;
+      padding: 3rem 1rem;
+      opacity: 0;
+      animation: gentleFadeIn 1.2s 1.5s forwards;
+    }
+    .burning-quote-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1.4rem;
+      line-height: 1.55;
+      color: #e5d6b8;
+      margin-bottom: 1.25rem;
+    }
+    .burning-quote-source {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: #8a8098;
+      text-transform: uppercase;
+    }
+    .burning-again {
+      display: block;
+      margin: 2rem auto 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #6b6478;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(138, 128, 152, 0.2);
+    }
+    .burning-again:hover { color: #e8a87c; border-bottom-color: #e8a87c; }
+
+    /* — THEMES — */
+    .themes-section {
+      padding: 3rem 0 4rem;
+    }
+
+    .themes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      max-width: 440px;
+      margin: 2.5rem auto 0;
+    }
+
+    .theme-item {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid rgba(138, 128, 152, 0.08);
+    }
     .theme-item:last-child { border-bottom: none; }
-    .theme-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; animation: flicker 3.5s ease-in-out infinite; }
-    .theme-name { font-family: 'Inter', sans-serif; font-size: 0.68rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; min-width: 72px; }
-    .theme-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: 1.05rem; color: #8a8098; flex: 1; }
+
+    .theme-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      animation: flicker 3.5s ease-in-out infinite;
+    }
+
+    .theme-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      min-width: 72px;
+    }
+
+    .theme-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1.05rem;
+      color: #8a8098;
+      flex: 1;
+    }
+
     .theme-love .theme-dot { background: radial-gradient(circle, #ffcfa0 0%, #e8a87c 55%, transparent 100%); box-shadow: 0 0 10px rgba(232, 168, 124, 0.6); }
     .theme-love .theme-name { color: #e8a87c; }
+
     .theme-work .theme-dot { background: radial-gradient(circle, #c2d3e4 0%, #8ba0b8 55%, transparent 100%); box-shadow: 0 0 10px rgba(139, 160, 184, 0.55); animation-delay: 0.6s; }
     .theme-work .theme-name { color: #8ba0b8; }
+
     .theme-study .theme-dot { background: radial-gradient(circle, #dcc5ea 0%, #b49bc8 55%, transparent 100%); box-shadow: 0 0 10px rgba(180, 155, 200, 0.55); animation-delay: 1.1s; }
     .theme-study .theme-name { color: #b49bc8; }
+
     .theme-family .theme-dot { background: radial-gradient(circle, #c9d4aa 0%, #a5b089 55%, transparent 100%); box-shadow: 0 0 10px rgba(165, 176, 137, 0.55); animation-delay: 1.8s; }
     .theme-family .theme-name { color: #a5b089; }
-    .also-brief { padding: 4rem 0 3rem; max-width: 500px; margin: 0 auto; }
-    .also-list { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.75rem; }
-    .also-item { text-align: center; }
-    .also-name { font-family: 'Inter', sans-serif; font-size: 0.68rem; font-weight: 400; letter-spacing: 0.35em; text-transform: uppercase; color: #d4c2a0; margin-bottom: 0.6rem; }
-    .also-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: 1.1rem; color: #8a8098; line-height: 1.5; max-width: 400px; margin: 0 auto; }
-    .cta-section { padding: 6rem 0 4rem; text-align: center; display: flex; flex-direction: column; align-items: center; }
-    .cta-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: 1.35rem; line-height: 1.65; color: #e5d6b8; max-width: 460px; margin-bottom: 3rem; }
-    .footer { padding: 3rem 0 4rem; text-align: center; }
-    .footer-quote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: 1rem; color: #6b6478; max-width: 420px; margin: 0 auto; line-height: 1.7; }
-    .footer-attrib { font-family: 'Inter', sans-serif; font-size: 0.65rem; font-weight: 300; letter-spacing: 0.25em; color: #4d4858; margin-top: 1.25rem; text-transform: uppercase; }
+
+    /* — ALSO IN LACUNA (brief) — */
+    .also-brief {
+      padding: 4rem 0 3rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .also-list {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .also-item {
+      text-align: center;
+    }
+
+    .also-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #d4c2a0;
+      margin-bottom: 0.6rem;
+    }
+
+    .also-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1.1rem;
+      color: #8a8098;
+      line-height: 1.5;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    /* — CTA SECTION — */
+    .cta-section {
+      padding: 6rem 0 4rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cta-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1.35rem;
+      line-height: 1.65;
+      color: #e5d6b8;
+      max-width: 460px;
+      margin-bottom: 3rem;
+    }
+
+    /* — FOOTER — */
+    .footer {
+      padding: 3rem 0 4rem;
+      text-align: center;
+    }
+
+    .footer-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1rem;
+      color: #6b6478;
+      max-width: 420px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .footer-attrib {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      color: #4d4858;
+      margin-top: 1.25rem;
+      text-transform: uppercase;
+    }
+
+    /* — RESPONSIVE — */
     @media (max-width: 600px) {
       .logo { font-size: 3rem; }
       .tagline { font-size: 1.5rem; }
@@ -110,136 +734,370 @@
       .cta-text { font-size: 1.15rem; }
     }
   </style>
-  <meta property="og:image" content="https://lacuna.page/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:url" content="https://lacuna.page">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Lacuna — a quiet place online, for three days">
-  <meta name="twitter:description" content="An anonymous online space for the words you cannot say aloud. Write, light a candle, let go. Posts fade in three days.">
-  <meta name="twitter:image" content="https://lacuna.page/og-image.png">
-  <link rel="canonical" href="https://lacuna.page">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Lacuna",
-    "description": "An anonymous space online for the words you can\'t say aloud.",
-    "url": "https://lacuna.page"
-  }
-  </script>
 </head>
 <body>
   <div class="container">
+
+    <!-- HERO with email form -->
     <section class="hero">
       <h1 class="logo">Lacuna</h1>
       <p class="tagline">a quiet place,<br>for three days.</p>
       <p class="coming-soon">opening soon.<br>reserve your corner.</p>
+
       <form class="waitlist-form" id="form-top" onsubmit="handleSubmit(event, 'form-top')">
         <input type="email" class="email-input" placeholder="your email" required autocomplete="email">
         <button type="submit" class="submit-btn">save my place</button>
       </form>
+
       <p class="fine-print">one email — only when we open.<br>your address is yours alone.</p>
     </section>
+
+    <!-- EXPLAINER -->
     <section class="explainer">
-      <div class="step"><div class="step-label">01</div><div class="step-text">Write what you can't say aloud.</div></div>
-      <div class="step"><div class="step-label">02</div><div class="step-text">Someone may leave a candle.</div></div>
-      <div class="step"><div class="step-label">03</div><div class="step-text">In three days, it's gone.</div></div>
-    </section>
-    <section class="sample-section">
-      <div class="sample-heading">a memory, before it fades</div>
-      <div class="entry">
-        <div class="entry-theme">— love</div>
-        <div class="entry-body">I still walk past your favorite café. I don't know if I'm trying to forget you or asking the city to remember you for me. I ordered your drink today. Didn't finish it.</div>
-        <div class="entry-footer">
-          <div class="candles">
-            <div class="candle"></div><div class="candle"></div><div class="candle"></div><div class="candle"></div>
-            <span class="candle-count">12</span>
-          </div>
-          <div class="timer">fading in 2 days, 14 hours</div>
-        </div>
+      <div class="step">
+        <div class="step-label">01</div>
+        <div class="step-text">Write what you can't say aloud.</div>
+      </div>
+      <div class="step">
+        <div class="step-label">02</div>
+        <div class="step-text">Someone may leave a candle.</div>
+      </div>
+      <div class="step">
+        <div class="step-label">03</div>
+        <div class="step-text">In three days, it's gone.</div>
       </div>
     </section>
+
+    <!-- WHISPERS — interactive sample posts -->
+    <section class="whispers-section">
+      <div class="sample-heading">what others might write here</div>
+      <div class="whispers-grid">
+
+        <div class="whisper-card">
+          <div class="whisper-theme love">— love</div>
+          <div class="whisper-body">I told him I was fine. I wasn't. I just didn't have another word ready.</div>
+          <div class="whisper-foot">
+            <button class="light-candle-btn" onclick="lightCandle(this, 1)" aria-label="light a candle">
+              <span class="candle-dot"></span>
+              <span class="candle-dot"></span>
+              <span class="candle-dot"></span>
+              <span class="candle-add" data-candle="1"></span>
+              <span class="whisper-count" data-count="1">8 candles</span>
+            </button>
+            <span class="whisper-timer">1d 4h left</span>
+          </div>
+        </div>
+
+        <div class="whisper-card">
+          <div class="whisper-theme family">— family</div>
+          <div class="whisper-body">I called my mom today just to hear someone call me by my name.</div>
+          <div class="whisper-foot">
+            <button class="light-candle-btn" onclick="lightCandle(this, 2)" aria-label="light a candle">
+              <span class="candle-dot"></span>
+              <span class="candle-dot"></span>
+              <span class="candle-dot"></span>
+              <span class="candle-dot"></span>
+              <span class="candle-add" data-candle="2"></span>
+              <span class="whisper-count" data-count="2">17 candles</span>
+            </button>
+            <span class="whisper-timer">2d 1h left</span>
+          </div>
+        </div>
+
+        <div class="whisper-card">
+          <div class="whisper-theme work">— work</div>
+          <div class="whisper-body">Some people leave a shape behind. I keep walking into yours.</div>
+          <div class="whisper-foot">
+            <button class="light-candle-btn" onclick="lightCandle(this, 3)" aria-label="light a candle">
+              <span class="candle-dot"></span>
+              <span class="candle-dot"></span>
+              <span class="candle-add" data-candle="3"></span>
+              <span class="whisper-count" data-count="3">3 candles</span>
+            </button>
+            <span class="whisper-timer">8h left</span>
+          </div>
+        </div>
+
+      </div>
+      <p class="whispers-note">these are imagined.<br>real ones will fade in three days.</p>
+    </section>
+
+    <!-- THEMES -->
     <section class="themes-section">
       <div class="sample-heading">four quiet corners</div>
       <div class="themes-list">
-        <div class="theme-item theme-love"><span class="theme-dot"></span><span class="theme-name">love</span><span class="theme-desc">for tender things</span></div>
-        <div class="theme-item theme-work"><span class="theme-dot"></span><span class="theme-name">work</span><span class="theme-desc">for tired things</span></div>
-        <div class="theme-item theme-study"><span class="theme-dot"></span><span class="theme-name">study</span><span class="theme-desc">for heavy things</span></div>
-        <div class="theme-item theme-family"><span class="theme-dot"></span><span class="theme-name">family</span><span class="theme-desc">for tangled things</span></div>
+        <div class="theme-item theme-love">
+          <span class="theme-dot"></span>
+          <span class="theme-name">love</span>
+          <span class="theme-desc">for tender things</span>
+        </div>
+        <div class="theme-item theme-work">
+          <span class="theme-dot"></span>
+          <span class="theme-name">work</span>
+          <span class="theme-desc">for tired things</span>
+        </div>
+        <div class="theme-item theme-study">
+          <span class="theme-dot"></span>
+          <span class="theme-name">study</span>
+          <span class="theme-desc">for heavy things</span>
+        </div>
+        <div class="theme-item theme-family">
+          <span class="theme-dot"></span>
+          <span class="theme-name">family</span>
+          <span class="theme-desc">for tangled things</span>
+        </div>
       </div>
     </section>
+
+    <!-- ALSO IN LACUNA (brief) -->
     <section class="also-brief">
       <div class="sample-heading">also in Lacuna</div>
       <div class="also-list">
-        <div class="also-item"><div class="also-name">Dawn</div><div class="also-desc">A single line from the community, once each morning.</div></div>
-        <div class="also-item"><div class="also-name">Montauk</div><div class="also-desc">Letters to someone specific — never sent, never read.</div></div>
-        <div class="also-item"><div class="also-name">Sealed</div><div class="also-desc">Write to yourself. Open in a month, or a year.</div></div>
+        <div class="also-item">
+          <div class="also-name">Dawn</div>
+          <div class="also-desc">A single line from the community, once each morning.</div>
+        </div>
+        <div class="also-item">
+          <div class="also-name">Montauk</div>
+          <div class="also-desc">Letters to someone specific — never sent, never read.</div>
+        </div>
+        <div class="also-item">
+          <div class="also-name">Sealed</div>
+          <div class="also-desc">Write to yourself. Open in a month, or a year.</div>
+        </div>
       </div>
     </section>
+
+    <!-- TRY BURNING — interactive demo -->
+    <section class="burning-section" id="try-burning">
+      <div class="sample-heading">try it</div>
+      <p class="burning-prompt">type something only you would say.<br>then burn it.</p>
+
+      <div id="burning-pad-wrap">
+        <div class="burning-pad">
+          <textarea class="burning-input" id="burning-input"
+                    placeholder="something heavy, something tender, something you can't say aloud..."
+                    rows="4"></textarea>
+          <div class="burning-actions">
+            <button class="burn-btn" id="burn-btn" onclick="burnIt()">burn</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="burning-result" style="display:none;">
+        <div class="burning-quote">
+          <div class="burning-quote-text" id="burn-quote-text">"The wound is the place<br>where the Light enters you."</div>
+          <div class="burning-quote-source" id="burn-quote-source">— Rumi</div>
+        </div>
+        <button class="burning-again" onclick="resetBurn()">try again</button>
+      </div>
+    </section>
+
+    <!-- BOTTOM CTA -->
     <section class="cta-section">
-      <div class="cta-text">When we open,<br>you'll be among the first<br>to find your words a home.</div>
+      <div class="cta-text">
+        When we open,<br>
+        you'll be among the first<br>
+        to find your words a home.
+      </div>
+
       <form class="waitlist-form" id="form-bottom" onsubmit="handleSubmit(event, 'form-bottom')">
         <input type="email" class="email-input" placeholder="your email" required autocomplete="email">
         <button type="submit" class="submit-btn">save my place</button>
       </form>
-      <p class="fine-print">no marketing. no launch spam.<br>one quiet note. that's all.</p>
+
+      <p class="fine-print">one email — only when we open.<br>never shared. never sold. never marketing.<br>use an alias if you'd like — we don't need your real name.</p>
     </section>
+
+    <!-- FOOTER -->
     <footer class="footer">
-      <p class="footer-quote">"How happy is the blameless vestal's lot!<br>The world forgetting, by the world forgot."</p>
+      <p class="footer-quote">
+        "How happy is the blameless vestal's lot!<br>
+        The world forgetting, by the world forgot."
+      </p>
       <div class="footer-attrib">Alexander Pope, 1717</div>
     </footer>
+
   </div>
+
   <script>
-    const FORM_ENDPOINT = "https://api.web3forms.com/submit";
+    // ═══════════════════════════════════════════════════════════════
+    // INTERACTIVE — light a candle on whispers
+    // ═══════════════════════════════════════════════════════════════
+    function lightCandle(btn, id) {
+      const candle = btn.querySelector('.candle-add');
+      const countEl = btn.querySelector('.whisper-count');
+      if (candle.classList.contains('lit')) return;
+      candle.classList.add('lit');
+      const current = parseInt(countEl.textContent.match(/\d+/)[0]);
+      countEl.textContent = (current + 1) + ' candles';
+      // Persist locally so it stays lit on reload
+      try { localStorage.setItem('lacuna-candle-' + id, '1'); } catch(e){}
+    }
+
+    // Restore lit candles from previous visits
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        document.querySelectorAll('.candle-add').forEach(c => {
+          const id = c.dataset.candle;
+          if (localStorage.getItem('lacuna-candle-' + id) === '1') {
+            const btn = c.closest('.light-candle-btn');
+            if (btn) lightCandle(btn, id);
+          }
+        });
+      } catch(e){}
+    });
+
+    // ═══════════════════════════════════════════════════════════════
+    // INTERACTIVE — burn a thought (demo of core experience)
+    // ═══════════════════════════════════════════════════════════════
+    const BURN_QUOTES = [
+      { text: '"The wound is the place<br>where the Light enters you."', source: '— Rumi' },
+      { text: '"Nothing is ever really lost to us<br>as long as we remember it."', source: '— L.M. Montgomery' },
+      { text: '"In solitude,<br>where we are least alone."', source: '— Lord Byron' },
+      { text: '"You do not have to be good."', source: '— Mary Oliver, Wild Geese' },
+      { text: '"What is to give light<br>must endure burning."', source: '— Viktor Frankl' }
+    ];
+
+    function burnIt() {
+      const input = document.getElementById('burning-input');
+      const btn = document.getElementById('burn-btn');
+      if (!input.value.trim()) {
+        input.focus();
+        input.placeholder = 'write something first — anything.';
+        return;
+      }
+      btn.disabled = true;
+      input.classList.add('burning');
+      input.disabled = true;
+      // Pick random quote
+      const quote = BURN_QUOTES[Math.floor(Math.random() * BURN_QUOTES.length)];
+      document.getElementById('burn-quote-text').innerHTML = quote.text;
+      document.getElementById('burn-quote-source').textContent = quote.source;
+      // After animation, show quote
+      setTimeout(() => {
+        document.getElementById('burning-pad-wrap').style.display = 'none';
+        document.getElementById('burning-result').style.display = 'block';
+      }, 2200);
+    }
+
+    function resetBurn() {
+      const input = document.getElementById('burning-input');
+      const btn = document.getElementById('burn-btn');
+      input.value = '';
+      input.classList.remove('burning');
+      input.disabled = false;
+      input.placeholder = "something heavy, something tender, something you can't say aloud...";
+      btn.disabled = false;
+      document.getElementById('burning-pad-wrap').style.display = 'block';
+      document.getElementById('burning-result').style.display = 'none';
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // CONFIGURATION — replace FORM_ENDPOINT with your real URL
+    // ═══════════════════════════════════════════════════════════════
+    //
+    // OPTION A · Formspree (SIMPLEST — recommended to start)
+    //   1. Sign up at https://formspree.io (free — 50 submissions/mo)
+    //   2. Create a new form, copy its URL (like https://formspree.io/f/xyzabc)
+    //   3. Paste that URL below as FORM_ENDPOINT
+    //   4. Done. Emails land in your Formspree dashboard + your inbox.
+    //
+    // OPTION B · Beehiiv (proper newsletter platform)
+    //   Beehiiv's API requires a secret key that can't live in client code.
+    //   You'll need a Vercel serverless function. Ask Claude to help — 10 min setup.
+    //   After setup, your endpoint will be: "/api/subscribe"
+    //
+    // OPTION C · Any other backend that accepts JSON POST { email: "..." }
+    //
+    // ═══════════════════════════════════════════════════════════════
+
+    const FORM_ENDPOINT = "https://formspree.io/f/xqenelqb";
+
+    // ═══════════════════════════════════════════════════════════════
+
     async function handleSubmit(event, formId) {
       event.preventDefault();
       const form = document.getElementById(formId);
       const email = form.querySelector('input[type="email"]').value;
       const submitBtn = form.querySelector('button[type="submit"]');
       const originalBtnText = submitBtn.textContent;
+
+      // Loading state
       submitBtn.disabled = true;
       submitBtn.textContent = 'sending...';
       submitBtn.style.opacity = '0.6';
+
+      // Demo mode — show confirmation without actually saving
       if (FORM_ENDPOINT === "DEMO_MODE") {
         setTimeout(() => showConfirmation(email), 700);
         return;
       }
+
       try {
         const response = await fetch(FORM_ENDPOINT, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({ access_key: '2d6d2cb7-ed93-4374-9cc4-14dd8a3642e7', email: email, subject: 'Lacuna waitlist signup' })
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            email: email,
+            source: 'lacuna-waitlist'
+          })
         });
-        if (response.ok) showConfirmation(email);
-        else throw new Error('Server returned ' + response.status);
+
+        if (response.ok) {
+          showConfirmation(email);
+        } else {
+          throw new Error('Server returned ' + response.status);
+        }
       } catch (err) {
         console.error('Submit error:', err);
         showError(form, submitBtn, originalBtnText);
       }
     }
+
     function showConfirmation(email) {
+      // Replace both forms with confirmation so user doesn't submit twice
       ['form-top', 'form-bottom'].forEach(id => {
         const f = document.getElementById(id);
         if (!f) return;
         const confirmation = document.createElement('div');
         confirmation.className = 'confirmation';
-        confirmation.innerHTML = `<div class="confirm-candle"></div><div class="confirm-text">your place is saved.</div><div class="confirm-email">${email}</div><div class="confirm-meta">we'll see you at the door.</div>`;
+        confirmation.innerHTML = `
+          <div class="confirm-candle"></div>
+          <div class="confirm-text">your place is saved.</div>
+          <div class="confirm-email">${email}</div>
+          <div class="confirm-meta">we'll see you at the door.</div>
+        `;
         f.parentNode.replaceChild(confirmation, f);
       });
     }
+
     function showError(form, submitBtn, originalText) {
+      // Reset button
       submitBtn.disabled = false;
       submitBtn.textContent = originalText;
       submitBtn.style.opacity = '1';
+
+      // Remove any existing error
       const existingError = form.parentNode.querySelector('.submit-error');
       if (existingError) existingError.remove();
+
+      // Show error message
       const error = document.createElement('div');
       error.className = 'submit-error';
-      error.style.cssText = "font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.92rem; color: #e8a87c; margin-top: 1.25rem; text-align: center; animation: gentleFadeIn 0.6s forwards;";
+      error.style.cssText =
+        "font-family: 'Cormorant Garamond', serif;" +
+        "font-style: italic;" +
+        "font-size: 0.92rem;" +
+        "color: #e8a87c;" +
+        "margin-top: 1.25rem;" +
+        "text-align: center;" +
+        "animation: gentleFadeIn 0.6s forwards;";
       error.textContent = "something didn't reach us. try again?";
+
       form.parentNode.insertBefore(error, form.nextSibling);
       setTimeout(() => error.remove(), 6000);
     }
