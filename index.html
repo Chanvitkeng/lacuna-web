@@ -183,7 +183,7 @@
       submitBtn.disabled = true;
       submitBtn.textContent = 'sending...';
       submitBtn.style.opacity = '0.6';
-      if (FORM_ENDPOINT === "https://api.web3forms.com/submit") {
+      if (FORM_ENDPOINT === "DEMO_MODE") {
         setTimeout(() => showConfirmation(email), 700);
         return;
       }
