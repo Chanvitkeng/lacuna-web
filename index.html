@@ -121,7 +121,7 @@
         <input type="email" class="email-input" placeholder="your email" required autocomplete="email">
         <button type="submit" class="submit-btn">save my place</button>
       </form>
-      <p class="fine-print">one note when we open. nothing else.</p>
+      <p class="fine-print">one email — only when we open.<br>your address is yours alone.</p>
     </section>
     <section class="explainer">
       <div class="step"><div class="step-label">01</div><div class="step-text">Write what you can't say aloud.</div></div>
@@ -173,7 +173,7 @@
     </footer>
   </div>
   <script>
-    const FORM_ENDPOINT = "DEMO_MODE";
+    const FORM_ENDPOINT = "https://formspree.io/f/xqenelqb";
     async function handleSubmit(event, formId) {
       event.preventDefault();
       const form = document.getElementById(formId);
@@ -183,7 +183,7 @@
       submitBtn.disabled = true;
       submitBtn.textContent = 'sending...';
       submitBtn.style.opacity = '0.6';
-      if (FORM_ENDPOINT === "DEMO_MODE") {
+      if (FORM_ENDPOINT === "https://formspree.io/f/xqenelqb") {
         setTimeout(() => showConfirmation(email), 700);
         return;
       }
