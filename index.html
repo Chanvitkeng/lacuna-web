@@ -173,7 +173,7 @@
     </footer>
   </div>
   <script>
-    const FORM_ENDPOINT = "https://formspree.io/f/xqenelqb";
+    const FORM_ENDPOINT = "https://api.web3forms.com/submit";
     async function handleSubmit(event, formId) {
       event.preventDefault();
       const form = document.getElementById(formId);
@@ -183,7 +183,7 @@
       submitBtn.disabled = true;
       submitBtn.textContent = 'sending...';
       submitBtn.style.opacity = '0.6';
-      if (FORM_ENDPOINT === "https://formspree.io/f/xqenelqb") {
+      if (FORM_ENDPOINT === "https://api.web3forms.com/submit") {
         setTimeout(() => showConfirmation(email), 700);
         return;
       }
@@ -191,7 +191,7 @@
         const response = await fetch(FORM_ENDPOINT, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({ email: email, source: 'lacuna-waitlist' })
+          body: JSON.stringify({ access_key: '2d6d2cb7-ed93-4374-9cc4-14dd8a3642e7', email: email, subject: 'Lacuna waitlist signup' })
         });
         if (response.ok) showConfirmation(email);
         else throw new Error('Server returned ' + response.status);
